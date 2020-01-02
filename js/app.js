@@ -35,10 +35,12 @@ class UI {
         const div = document.createElement('div');
         div.className = 'alert alert-' + className;
         div.appendChild(document.createTextNode(message));
+
         const container = document.querySelector('.container');
         const form = document.querySelector('#book-form');
         container.insertBefore(div, form);
-        setTimeout(() => document.querySelector('.alert').remove(), 3000);
+
+        setTimeout(() => document.querySelector('.alert').remove(), 2000);
     }
 
     static clearFields(){
@@ -104,7 +106,6 @@ bookForm.addEventListener('submit', (event) => {
     const idBook = document.querySelector('#idBook').value;
 
     //Validate
-
     if (title === '' || author === '' || idBook === '' ) {
         UI.showAlert('Please fill in all fields', 'danger');
     } else {
@@ -116,7 +117,8 @@ bookForm.addEventListener('submit', (event) => {
         //Add Store
         Store.addBook(book)
 
-        UI.showAlert('Success!', 'success')
+        UI.showAlert('Success!', 'success');
+
         //clear fields
         UI.clearFields();
     }
@@ -125,6 +127,6 @@ bookForm.addEventListener('submit', (event) => {
 // Event: Remove a Books
 document.querySelector('#book-list').addEventListener('click', (event) => {
     UI.deleteBook(event.target);
-    Store.removeBook(event.target.parentElement.previousElementSibling.textContent)
-    UI.showAlert('Boook Remove!', 'success')
+    Store.removeBook(event.target.parentElement.previousElementSibling.textContent);
+    UI.showAlert('Boook Remove!', 'success');
 });
